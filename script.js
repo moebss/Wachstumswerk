@@ -63,9 +63,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Floating CTA visibility
+    const floatingCta = document.getElementById('floatingCta');
+    if (floatingCta) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                floatingCta.classList.add('visible');
+            } else {
+                floatingCta.classList.remove('visible');
+            }
+        });
+    }
+
     // Intersection Observer for scroll animations
     const observerOptions = {
-        threshold: 0.1,
+        threshold: 0.15,
         rootMargin: '0px 0px -50px 0px'
     };
 
@@ -73,27 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                // Optional: Stop observing once visible
+                // observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     // Observe elements for animation
-    document.querySelectorAll('.angebot-card, .methode-item, .testimonial-card').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-
-    // Add visible class styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .angebot-card.visible,
-        .methode-item.visible,
-        .testimonial-card.visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-    document.head.appendChild(style);
+    const animateElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+    animateElements.forEach(el => observer.observe(el));
 });
