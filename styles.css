@@ -1,23 +1,41 @@
 /* ========================================
-   Peggy Coaching Website - Stylesheet
+   Wachstumswerk - Coaching Website
+   Farbpalette aus Logo extrahiert
    ======================================== */
 
 :root {
-    /* Colors - Warm, professional petrol accent */
-    --color-primary: #1a5f6a;
-    --color-primary-light: #2a7a87;
-    --color-primary-dark: #134850;
-    --color-accent: #c2847a;
+    /* Colors - Aus dem Wachstumswerk Logo */
+    --color-primary: #3DB9A3;
+    /* Türkis/Mint - Hauptfarbe */
+    --color-primary-light: #5CCFBB;
+    /* Helleres Türkis */
+    --color-primary-dark: #2A9A86;
+    /* Dunkleres Türkis */
+    --color-primary-pale: #E8F7F5;
+    /* Sehr helles Türkis für Hintergründe */
 
-    --color-text: #2d3436;
-    --color-text-light: #636e72;
-    --color-text-muted: #b2bec3;
+    --color-secondary: #3C4F5C;
+    /* Anthrazit - "werk" */
+    --color-secondary-light: #5A6D7A;
+    /* Helleres Anthrazit */
+
+    --color-accent: #7CE5DE;
+    /* Helleres Türkis für Akzente */
+
+    --color-text: #2B3A44;
+    /* Dunkel-Anthrazit für Text */
+    --color-text-light: #5A6D7A;
+    /* Hellerer Text */
+    --color-text-muted: #9AABB8;
+    /* Sehr heller Text */
 
     --color-bg: #ffffff;
-    --color-bg-warm: #faf8f5;
-    --color-bg-light: #f8f9fa;
+    --color-bg-warm: #F8FCFB;
+    /* Sehr leichtes Türkis-Weiß */
+    --color-bg-light: #F0F7F6;
+    /* Helles Türkis-Grau */
 
-    --color-border: #e9ecef;
+    --color-border: #DCE8E6;
 
     /* Typography */
     --font-heading: 'Playfair Display', Georgia, serif;
@@ -155,7 +173,7 @@ img {
     border-color: var(--color-primary-dark);
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(26, 95, 106, 0.3);
+    box-shadow: 0 4px 12px rgba(61, 185, 163, 0.35);
 }
 
 .btn-secondary {
@@ -212,14 +230,17 @@ img {
 }
 
 .logo {
-    font-family: var(--font-heading);
-    font-size: 1.75rem;
-    font-weight: 500;
-    color: var(--color-text);
+    display: flex;
+    align-items: center;
 }
 
-.logo:hover {
-    color: var(--color-primary);
+.logo-img {
+    height: 48px;
+    width: auto;
+}
+
+.logo:hover .logo-img {
+    opacity: 0.85;
 }
 
 .nav-links {
@@ -635,7 +656,7 @@ img {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(26, 95, 106, 0.1);
+    box-shadow: 0 0 0 3px rgba(61, 185, 163, 0.15);
 }
 
 .form-group textarea {
@@ -660,9 +681,10 @@ img {
     gap: 24px;
 }
 
-.footer-logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    margin-bottom: 8px;
 }
 
 .footer-brand p {
