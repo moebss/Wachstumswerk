@@ -1222,26 +1222,43 @@ img {
 /* Botanische Dekorationen */
 .botanical-decoration {
     position: absolute;
-    z-index: -1;
+    z-index: 1;
+    /* Vor den Hintergrund, hinter den Text */
     color: var(--color-primary);
     pointer-events: none;
-    opacity: 0.2;
+    opacity: 0.4;
+    /* Deutlich sichtbarer */
     transition: var(--transition);
 }
 
 .leaf-1 {
-    width: 200px;
-    height: 200px;
-    bottom: -50px;
-    right: -50px;
-    transform: rotate(-15deg);
+    width: 350px;
+    /* Größer */
+    height: 350px;
+    bottom: -80px;
+    right: -100px;
+    transform: rotate(-10deg);
 }
 
+.leaf-2 {
+    width: 300px;
+    height: 300px;
+    /* Styles kommen via Inline-Style im HTML für leaf-2 */
+}
+
+/* Hover-Effekt verstärken */
 .hero-image:hover .leaf-1 {
-    transform: rotate(0deg) scale(1.1);
+    transform: rotate(5deg) scale(1.15);
+    opacity: 0.6;
 }
 
-/* 6. Interaktives Formular */
+/* Icons im Prozess präsenter */
+.step-icon {
+    background: var(--color-primary-pale);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
 .form-options-label {
     display: block;
     font-size: 0.875rem;
