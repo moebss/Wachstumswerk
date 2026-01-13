@@ -252,6 +252,38 @@
             </div>
         </section>
 
+        <!-- Prozess Section -->
+        <section id="prozess" class="section process-section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Dein Weg zum Wachstum</h2>
+                    <p class="section-intro">Ein strukturierter Prozess für nachhaltige Veränderung.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="process-step fade-in">
+                        <div class="step-number">01</div>
+                        <h3>Erstgespräch</h3>
+                        <p>Wir lernen uns unverbindlich kennen und klären dein Anliegen.</p>
+                    </div>
+                    <div class="process-step fade-in delay-1">
+                        <div class="step-number">02</div>
+                        <h3>Analyse</h3>
+                        <p>Wir identifizieren Blockaden und Ressourcen in deiner aktuellen Situation.</p>
+                    </div>
+                    <div class="process-step fade-in delay-2">
+                        <div class="step-number">03</div>
+                        <h3>Begleitung</h3>
+                        <p>In regelmäßigen Sessions arbeiten wir gezielt an deinen Zielen.</p>
+                    </div>
+                    <div class="process-step fade-in delay-3">
+                        <div class="step-number">04</div>
+                        <h3>Transfer</h3>
+                        <p>Du integrierst das Gelernte nachhaltig in deinen Alltag.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Testimonials Section -->
         <section id="stimmen" class="section testimonials-section">
             <div class="container">
@@ -355,12 +387,32 @@
                                 <label for="email">E-Mail</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
+
+                            <!-- Interaktive Auswahl (Requirement 6) -->
                             <div class="form-group">
-                                <label for="telefon">Telefon (optional)</label>
-                                <input type="tel" id="telefon" name="telefon">
+                                <span class="form-options-label">Wobei kann ich dich unterstützen?</span>
+                                <div class="form-options-grid">
+                                    <label class="option-item">
+                                        <input type="radio" name="support_type" value="führung" checked>
+                                        <span class="option-card">Innere Führung</span>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="support_type" value="karriere">
+                                        <span class="option-card">Karriere</span>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="support_type" value="klarheit">
+                                        <span class="option-card">Klarheit finden</span>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="support_type" value="andere">
+                                        <span class="option-card">Anderes Thema</span>
+                                    </label>
+                                </div>
                             </div>
+
                             <div class="form-group">
-                                <label for="nachricht">Deine Nachricht</label>
+                                <label for="nachricht">Deine Nachricht (optional)</label>
                                 <textarea id="nachricht" name="nachricht" rows="4"
                                     placeholder="Erzähl mir kurz, worum es geht..."></textarea>
                             </div>
