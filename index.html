@@ -504,32 +504,43 @@
         </a>
     </div>
 
-    <!-- Scroll-Progress Flower -->
-    <div class="scroll-flower-container" id="scrollFlower">
-        <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Stiel -->
-            <path id="flower-stem" d="M50 200C50 200 50 150 50 100" stroke="var(--color-primary)" stroke-width="3"
-                stroke-linecap="round" />
+    <!-- Scroll-Progress Vine -->
+    <div class="scroll-vine-container" id="scrollVine">
+        <svg viewBox="0 0 100 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <!-- Hauptstamm der Ranke -->
+            <path id="vine-stem" d="M30 0C30 0 50 100 30 200C10 300 50 400 30 500C10 600 50 700 30 800"
+                stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" />
 
-            <!-- Blatt 1 (links) -->
-            <g id="flower-leaf-1" class="flower-part">
-                <path d="M50 160C30 160 20 140 20 130C20 120 40 120 50 160Z" fill="var(--color-primary)"
-                    fill-opacity="0.3" stroke="var(--color-primary)" />
+            <!-- Wachstumsknoten 1 (ca. 15%) -->
+            <g class="vine-node" data-trigger="0.15">
+                <path d="M32 120C45 110 55 120 50 130C45 140 32 135 32 135" fill="var(--color-primary)"
+                    fill-opacity="0.2" stroke="var(--color-primary)" />
             </g>
 
-            <!-- Blatt 2 (rechts) -->
-            <g id="flower-leaf-2" class="flower-part">
-                <path d="M50 140C70 140 80 120 80 110C80 100 60 100 50 140Z" fill="var(--color-primary)"
-                    fill-opacity="0.3" stroke="var(--color-primary)" />
+            <!-- Wachstumsknoten 2 (ca. 30%) - Erste Knospe -->
+            <g class="vine-node" data-trigger="0.3">
+                <circle cx="25" cy="240" r="4" fill="var(--color-accent)" stroke="var(--color-primary)" />
+                <path d="M25 240C15 230 10 245 25 255" stroke="var(--color-primary)" stroke-width="1" />
             </g>
 
-            <!-- Die Blüte -->
-            <g id="flower-head" class="flower-part">
-                <circle cx="50" cy="100" r="10" fill="var(--color-accent)" fill-opacity="0.5"
+            <!-- Wachstumsknoten 3 (ca. 50%) -->
+            <g class="vine-node" data-trigger="0.5">
+                <path d="M35 410C55 400 65 420 55 435C45 450 35 440 35 440" fill="var(--color-primary)"
+                    fill-opacity="0.2" stroke="var(--color-primary)" />
+            </g>
+
+            <!-- Wachstumsknoten 4 (ca. 70%) - Blüte -->
+            <g class="vine-node" data-trigger="0.7">
+                <path d="M25 580C10 570 5 590 25 600C45 610 35 580 25 580Z" fill="var(--color-accent)"
+                    fill-opacity="0.4" stroke="var(--color-primary)" />
+                <circle cx="25" cy="590" r="3" fill="var(--color-primary)" />
+            </g>
+
+            <!-- Wachstumsknoten 5 (ca. 90%) - Volle Blüte -->
+            <g class="vine-node" data-trigger="0.9">
+                <path d="M35 740C55 720 75 740 55 760C35 780 15 740 35 740Z" fill="var(--color-accent)"
                     stroke="var(--color-primary)" />
-                <path
-                    d="M50 85C50 85 65 70 70 85C75 100 50 100 50 100M50 85C50 85 35 70 30 85C25 100 50 100 50 100M50 85C50 85 65 100 50 115C35 100 50 85 50 85Z"
-                    fill="var(--color-accent)" stroke="var(--color-primary)" />
+                <circle cx="35" cy="750" r="4" fill="white" stroke="var(--color-primary)" />
             </g>
         </svg>
     </div>

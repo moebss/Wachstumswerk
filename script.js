@@ -95,37 +95,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const animateElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
     animateElements.forEach(el => observer.observe(el));
 
-    // Interactive Scroll Flower Logic
-    const stem = document.getElementById('flower-stem');
-    const leaf1 = document.getElementById('flower-leaf-1');
-    const leaf2 = document.getElementById('flower-leaf-2');
-    const head = document.getElementById('flower-head');
+    // Interactive Scroll Vine Logic
+    const vineStem = document.getElementById('vine-stem');
+    const vineNodes = document.querySelectorAll('.vine-node');
 
     window.addEventListener('scroll', () => {
         const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight));
 
-        // 1. Stiel wächst (0% - 60% scroll)
-        if (stem) {
-            const stemProgress = Math.min(scrollPercent / 0.6, 1);
-            stem.style.strokeDashoffset = 100 - (stemProgress * 100);
+        // 1. Ranke wächst (der Stiel)
+        if (vineStem) {
+            vineStem.style.strokeDashoffset = 1000 - (scrollPercent * 1000);
         }
 
-        // 2. Blatt 1 erscheint (ab 20% scroll)
-        if (leaf1) {
-            const leaf1Progress = Math.max(0, Math.min((scrollPercent - 0.2) / 0.2, 1));
-            leaf1.style.transform = `scale(${leaf1Progress})`;
-        }
-
-        // 3. Blatt 2 erscheint (ab 40% scroll)
-        if (leaf2) {
-            const leaf2Progress = Math.max(0, Math.min((scrollPercent - 0.4) / 0.2, 1));
-            leaf2.style.transform = `scale(${leaf2Progress})`;
-        }
-
-        // 4. Blüte öffnet sich (ab 60% scroll)
-        if (head) {
-            const headProgress = Math.max(0, Math.min((scrollPercent - 0.6) / 0.4, 1));
-            head.style.transform = `scale(${headProgress})`;
-        }
+        // 2. Knoten (Blätter/Blüten) erscheinen bei Erreichen ihres Trigger-Werts
+        vineNodes.forEach(node => {
+            const trigger = parseFloat(node.getAttribute('data-trigger'));
+            if (scrollPercent >= trigger) {
+                node.classList.add('active');
+            } else {
+                node.classList.remove('active');
+            }
+        });
     });
 });
