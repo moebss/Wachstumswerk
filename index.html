@@ -504,6 +504,36 @@
         </a>
     </div>
 
+    <!-- Scroll-Progress Flower -->
+    <div class="scroll-flower-container" id="scrollFlower">
+        <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stiel -->
+            <path id="flower-stem" d="M50 200C50 200 50 150 50 100" stroke="var(--color-primary)" stroke-width="3"
+                stroke-linecap="round" />
+
+            <!-- Blatt 1 (links) -->
+            <g id="flower-leaf-1" class="flower-part">
+                <path d="M50 160C30 160 20 140 20 130C20 120 40 120 50 160Z" fill="var(--color-primary)"
+                    fill-opacity="0.3" stroke="var(--color-primary)" />
+            </g>
+
+            <!-- Blatt 2 (rechts) -->
+            <g id="flower-leaf-2" class="flower-part">
+                <path d="M50 140C70 140 80 120 80 110C80 100 60 100 50 140Z" fill="var(--color-primary)"
+                    fill-opacity="0.3" stroke="var(--color-primary)" />
+            </g>
+
+            <!-- Die Blüte -->
+            <g id="flower-head" class="flower-part">
+                <circle cx="50" cy="100" r="10" fill="var(--color-accent)" fill-opacity="0.5"
+                    stroke="var(--color-primary)" />
+                <path
+                    d="M50 85C50 85 65 70 70 85C75 100 50 100 50 100M50 85C50 85 35 70 30 85C25 100 50 100 50 100M50 85C50 85 65 100 50 115C35 100 50 85 50 85Z"
+                    fill="var(--color-accent)" stroke="var(--color-primary)" />
+            </g>
+        </svg>
+    </div>
+
     <script src="script.js"></script>
 </body>
 

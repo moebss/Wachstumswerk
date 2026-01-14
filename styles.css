@@ -1322,3 +1322,37 @@ img {
         grid-template-columns: 1fr;
     }
 }
+
+/* ========================================
+   SCROLL-FLOWER STYLES
+   ======================================== */
+.scroll-flower-container {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 120px;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.flower-part {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    transform: scale(0);
+    transition: transform 0.1s linear;
+}
+
+#flower-stem {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+@media (max-width: 1024px) {
+    .scroll-flower-container {
+        display: none;
+        /* Auf Tablets/Handys ausblenden für mehr Platz */
+    }
+}
