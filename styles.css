@@ -235,7 +235,8 @@ img {
 }
 
 .logo-img {
-    height: 48px;
+    height: 60px;
+    /* Größer im Header */
     width: auto;
 }
 
@@ -295,8 +296,9 @@ img {
 
 .hero-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 1fr 1.2fr;
+    /* Bild-Teil etwas breiter */
+    gap: 60px;
     align-items: center;
 }
 
@@ -435,7 +437,10 @@ img {
 
 .ueber-image-placeholder {
     aspect-ratio: 3/4;
-    max-width: 400px;
+    max-width: 100%;
+    /* Flexibler */
+    width: 450px;
+    /* Größeres Portrait */
 }
 
 .ueber-content h2 {
@@ -1455,8 +1460,10 @@ img {
 }
 
 .signature-logo {
-    max-width: 180px;
+    max-width: 220px;
+    /* Größere Signatur */
     height: auto;
+    display: block;
 }
 
 .ueber-signature:hover {
