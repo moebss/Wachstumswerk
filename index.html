@@ -60,22 +60,28 @@
                         <a href="#angebot" class="btn btn-secondary">Mehr erfahren</a>
                     </div>
                 </div>
-                <div class="hero-image fade-in-right">
-                    <div class="hero-image-placeholder">
-                        <span>Foto von Peggy</span>
+                <div class="hero-visual-wrapper fade-in-right">
+                    <div class="hero-logo-glowing">
+                        <img src="logo.png" alt="Wachstumswerk Logo" class="hero-logo-img-large">
+                        <div class="glowing-circle"></div>
                     </div>
-                    <!-- Botanische Deko -->
-                    <div class="botanical-decoration leaf-1">
-                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 100C50 100 50 60 85 25M50 100C50 100 50 40 15 15M50 100V20"
-                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                            <ellipse cx="85" cy="25" rx="8" ry="12" transform="rotate(-30 85 25)" fill="currentColor"
-                                fill-opacity="0.1" stroke="currentColor" />
-                            <ellipse cx="15" cy="15" rx="8" ry="12" transform="rotate(30 15 15)" fill="currentColor"
-                                fill-opacity="0.1" stroke="currentColor" />
-                            <ellipse cx="50" cy="20" rx="7" ry="10" fill="currentColor" fill-opacity="0.1"
-                                stroke="currentColor" />
-                        </svg>
+                    <div class="hero-image">
+                        <div class="hero-image-placeholder">
+                            <span>Foto von Peggy</span>
+                        </div>
+                        <!-- Botanische Deko -->
+                        <div class="botanical-decoration leaf-1">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 100C50 100 50 60 85 25M50 100C50 100 50 40 15 15M50 100V20"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <ellipse cx="85" cy="25" rx="8" ry="12" transform="rotate(-30 85 25)"
+                                    fill="currentColor" fill-opacity="0.1" stroke="currentColor" />
+                                <ellipse cx="15" cy="15" rx="8" ry="12" transform="rotate(30 15 15)" fill="currentColor"
+                                    fill-opacity="0.1" stroke="currentColor" />
+                                <ellipse cx="50" cy="20" rx="7" ry="10" fill="currentColor" fill-opacity="0.1"
+                                    stroke="currentColor" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -531,16 +537,18 @@
 
             <!-- Wachstumsknoten 4 (ca. 70%) - Blüte -->
             <g class="vine-node" data-trigger="0.7">
-                <path d="M25 580C10 570 5 590 25 600C45 610 35 580 25 580Z" fill="var(--color-accent)"
-                    fill-opacity="0.4" stroke="var(--color-primary)" />
-                <circle cx="25" cy="590" r="3" fill="var(--color-primary)" />
+                <path d="M25 580C5 565 -5 595 25 610C55 625 45 580 25 580Z" fill="var(--color-primary)"
+                    fill-opacity="0.5" stroke="var(--color-primary)" />
+                <circle cx="25" cy="595" rx="10" ry="10" fill="var(--color-accent)" />
             </g>
 
             <!-- Wachstumsknoten 5 (ca. 90%) - Volle Blüte -->
             <g class="vine-node" data-trigger="0.9">
-                <path d="M35 740C55 720 75 740 55 760C35 780 15 740 35 740Z" fill="var(--color-accent)"
+                <circle cx="35" cy="750" r="15" fill="var(--color-accent)" fill-opacity="0.4"
                     stroke="var(--color-primary)" />
-                <circle cx="35" cy="750" r="4" fill="white" stroke="var(--color-primary)" />
+                <path d="M35 735C55 715 85 740 55 770C25 800 15 735 35 735Z" fill="var(--color-primary)"
+                    stroke="var(--color-primary)" />
+                <circle cx="35" cy="750" r="6" fill="white" stroke="var(--color-primary)" />
             </g>
         </svg>
     </div>
