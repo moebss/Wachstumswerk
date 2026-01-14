@@ -296,9 +296,8 @@ img {
 
 .hero-container {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    /* Bild-Teil etwas breiter */
-    gap: 60px;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
     align-items: center;
 }
 
@@ -322,17 +321,29 @@ img {
     gap: 16px;
 }
 
+.hero-image {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .hero-image-placeholder,
 .ueber-image-placeholder {
     background: linear-gradient(135deg, var(--color-bg-light) 0%, #e9ecef 100%);
     border-radius: 12px;
     aspect-ratio: 4/5;
+    width: 100%;
+    max-width: 520px;
+    /* Deutlich größer */
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-text-muted);
-    font-size: 0.875rem;
+    font-size: 1rem;
     border: 2px dashed var(--color-border);
+    position: relative;
+    z-index: 2;
 }
 
 /* ========================================
@@ -1237,11 +1248,11 @@ img {
 }
 
 .leaf-1 {
-    width: 350px;
-    /* Größer */
-    height: 350px;
-    bottom: -80px;
-    right: -100px;
+    width: 250px;
+    /* Zurück auf ein Maß, das das Bild nicht erdrückt */
+    height: 250px;
+    bottom: -40px;
+    right: -40px;
     transform: rotate(-10deg);
 }
 
@@ -1460,8 +1471,8 @@ img {
 }
 
 .signature-logo {
-    max-width: 220px;
-    /* Größere Signatur */
+    max-width: 250px;
+    /* Noch etwas größer */
     height: auto;
     display: block;
 }
