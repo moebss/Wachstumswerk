@@ -168,7 +168,7 @@ export default function App() {
             <FadeIn delay={0.2} className="relative">
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden relative">
                 <img
-                  src="/peggy.jpg"
+                  src="./peggy.jpg"
                   alt="Portrait Peggy"
                   className="w-full h-full object-cover"
                 />
@@ -242,7 +242,7 @@ export default function App() {
             <FadeIn className="order-2 md:order-1 relative">
               <div className="aspect-[3/4] rounded-full overflow-hidden max-w-md mx-auto relative">
                 <img
-                  src="/peggy2.jpg"
+                  src="./peggy2.jpg"
                   alt="Peggy"
                   className="w-full h-full object-cover"
                 />
