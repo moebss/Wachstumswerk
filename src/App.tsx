@@ -3,16 +3,22 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   Menu, X, User, Briefcase, ClipboardList, Users,
   Sprout, Leaf, Flower2, TreeDeciduous, ArrowRight, Star, Mail, Phone, MapPin,
-  ChevronLeft, ChevronRight
+  ChevronLeft, ChevronRight, Linkedin
 } from 'lucide-react';
 
-const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
+import logo from './assets/logo_transparent.png';
+import peggy from './assets/peggy.jpg';
+import peggy2 from './assets/peggy2.jpg';
+
+
+const FadeIn = ({ children, delay = 0, className = "", ...props }: { children: React.ReactNode, delay?: number, className?: string } & React.HTMLAttributes<HTMLDivElement>) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.6, delay }}
     className={className}
+    {...props}
   >
     {children}
   </motion.div>
@@ -58,6 +64,8 @@ function FloatingPaths({ position }: { position: number }) {
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showImpressum, setShowImpressum] = useState(false);
+  const [showDatenschutz, setShowDatenschutz] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,7 +91,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <a href="#" className="block">
             <img
-              src="logo_transparent.png"
+              src={logo}
               alt="Wachstumswerk Logo"
               className={`w-auto object-contain origin-left transition-all duration-300 ${isScrolled ? 'h-12 md:h-14' : 'h-16 md:h-20'}`}
             />
@@ -168,7 +176,7 @@ export default function App() {
             <FadeIn delay={0.2} className="relative">
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden relative">
                 <img
-                  src="./peggy.jpg"
+                  src={peggy}
                   alt="Portrait Peggy"
                   className="w-full h-full object-cover"
                 />
@@ -192,6 +200,12 @@ export default function App() {
             <div className="grid md:grid-cols-2 gap-8">
               {[
                 {
+                  icon: <ClipboardList className="w-8 h-8" />,
+                  title: "Prüfungsvorbereitung für Auszubildende",
+                  desc: "Training & Beratung für Einzelpersonen, Gruppen von Auszubildenden und Unternehmen.",
+                  items: ["Inhaltliche Vorbereitung für verschiedene Berufe", "Strukturelle Vorbereitung", "Prüfungsangst abbauen"]
+                },
+                {
                   icon: <User className="w-8 h-8" />,
                   title: "Einzelcoaching",
                   desc: "Persönliche 1:1-Begleitung für tiefgreifende Veränderungsprozesse.",
@@ -202,12 +216,6 @@ export default function App() {
                   title: "Business Coaching",
                   desc: "Für Führungskräfte und Unternehmer:innen, die bewusst führen wollen.",
                   items: ["Leadership-Entwicklung", "Entscheidungsfindung", "Work-Life-Integration"]
-                },
-                {
-                  icon: <ClipboardList className="w-8 h-8" />,
-                  title: "Prüfungsvorbereitung für Auszubildende",
-                  desc: "Training & Beratung für Einzelpersonen, Gruppen von Auszubildenden und Unternehmen.",
-                  items: ["Inhaltliche Vorbereitung für verschiedene Berufe", "Strukturelle Vorbereitung", "Prüfungsangst abbauen"]
                 },
                 {
                   icon: <Users className="w-8 h-8" />,
@@ -242,7 +250,7 @@ export default function App() {
             <FadeIn className="order-2 md:order-1 relative">
               <div className="aspect-[3/4] rounded-full overflow-hidden max-w-md mx-auto relative">
                 <img
-                  src="./peggy2.jpg"
+                  src={peggy2}
                   alt="Peggy"
                   className="w-full h-full object-cover"
                 />
@@ -261,12 +269,21 @@ export default function App() {
                   Seit 22 Jahren bin ich als ehrenamtliche IHK-Prüferin tätig und leite einen Prüfungsausschuss für Hotelfachleute in Köln. Trainings zur Prüfungsvorbereitung gebe ich seit 20 Jahren. Diesen Erfahrungsschatz möchte ich nutzen, um Auszubildende in verschiedenen Berufen zu unterstützen und Unternehmen zu helfen, eine wirkungsvolle Prüfungsvorbereitung zu etablieren.
                 </p>
               </div>
+              <a
+                href="https://www.linkedin.com/company/wachstumswerk-coaching-i-training-i-pr%C3%BCfungsvorbereitung-f%C3%BCr-auszubildende/posts/?feedView=all"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 mt-8 bg-[#0A66C2] text-white px-6 py-3 rounded-full font-medium hover:bg-[#004182] transition-colors shadow-md hover:shadow-lg"
+              >
+                <Linkedin size={20} />
+                Auf LinkedIn folgen
+              </a>
             </FadeIn>
           </div>
 
           {/* Logo as section divider */}
           <FadeIn className="mt-20 flex justify-center">
-            <img src="logo_transparent.png" alt="Wachstumswerk" className="h-40 md:h-52 w-auto opacity-80" />
+            <img src={logo} alt="Wachstumswerk" className="h-40 md:h-52 w-auto opacity-80" />
           </FadeIn>
         </section>
 
@@ -591,21 +608,132 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
             <img
-              src="logo_transparent.png"
+              src={logo}
               alt="Wachstumswerk Logo"
               className="h-16 w-auto object-contain mb-4 mx-auto md:mx-0 brightness-0 invert opacity-90"
             />
             <p className="text-sm">Begleitung für deine persönliche Entwicklung.</p>
           </div>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="hover:text-white transition-colors">Impressum</a>
-            <a href="#" className="hover:text-white transition-colors">Datenschutz</a>
+            <button onClick={() => setShowImpressum(true)} className="hover:text-white transition-colors cursor-pointer">Impressum</button>
+            <button onClick={() => setShowDatenschutz(true)} className="hover:text-white transition-colors cursor-pointer">Datenschutz</button>
           </div>
           <div className="text-sm text-white/50">
             &copy; 2026 Wachstumswerk. Alle Rechte vorbehalten.
           </div>
         </div>
       </footer>
+
+      {/* Impressum Modal */}
+      <AnimatePresence>
+        {showImpressum && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setShowImpressum(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-8 md:p-12 relative shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowImpressum(false)}
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+              >
+                <X size={20} />
+              </button>
+              <h2 className="text-3xl font-serif mb-8">Impressum</h2>
+              <div className="space-y-6 text-gray-700 leading-relaxed">
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Angaben gemäß § 5 TMG</h3>
+                  <p>Alexander Rheindorf<br />Pankratiusstraße 31<br />50129 Bergheim</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Kontakt</h3>
+                  <p>E-Mail: <a href="mailto:alexander.rheindorf@aachen-blockchain.de" className="text-[var(--color-brand)] hover:underline">alexander.rheindorf@aachen-blockchain.de</a></p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+                  <p>Alexander Rheindorf<br />Pankratiusstraße 31<br />50129 Bergheim</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Haftungsausschluss</h3>
+                  <h4 className="font-medium text-gray-800 mb-1">Haftung für Inhalte</h4>
+                  <p className="text-sm">Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+                  <h4 className="font-medium text-gray-800 mb-1 mt-4">Haftung für Links</h4>
+                  <p className="text-sm">Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2">Urheberrecht</h3>
+                  <p className="text-sm">Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Datenschutz Modal */}
+      <AnimatePresence>
+        {showDatenschutz && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setShowDatenschutz(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-8 md:p-12 relative shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowDatenschutz(false)}
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+              >
+                <X size={20} />
+              </button>
+              <h2 className="text-3xl font-serif mb-8">Datenschutzerklärung</h2>
+              <div className="space-y-6 text-gray-700 leading-relaxed text-sm">
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base">1. Datenschutz auf einen Blick</h3>
+                  <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base">2. Allgemeine Hinweise und Pflichtinformationen</h3>
+                  <h4 className="font-medium text-gray-800 mb-1">Datenschutz</h4>
+                  <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+                  <h4 className="font-medium text-gray-800 mb-1 mt-4">Verantwortliche Stelle</h4>
+                  <p>Alexander Rheindorf<br />Pankratiusstraße 31<br />50129 Bergheim<br />E-Mail: <a href="mailto:alexander.rheindorf@aachen-blockchain.de" className="text-[var(--color-brand)] hover:underline">alexander.rheindorf@aachen-blockchain.de</a></p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base">3. Datenerfassung auf dieser Website</h3>
+                  <h4 className="font-medium text-gray-800 mb-1">Kontaktformular</h4>
+                  <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+                  <h4 className="font-medium text-gray-800 mb-1 mt-4">Server-Log-Dateien</h4>
+                  <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind: Browsertyp und Browserversion, verwendetes Betriebssystem, Referrer URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage und IP-Adresse.</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base">4. Hosting</h3>
+                  <p>Diese Website wird bei GitHub Pages gehostet. Details entnehmen Sie der Datenschutzerklärung von GitHub: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer" className="text-[var(--color-brand)] hover:underline">GitHub Datenschutzerklärung</a>.</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2 text-base">5. Ihre Rechte</h3>
+                  <p>Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
