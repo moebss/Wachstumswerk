@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   Menu, X, User, Briefcase, ClipboardList, Users,
   Sprout, Leaf, Flower2, TreeDeciduous, ArrowRight, Star, Mail, Phone, MapPin,
-  ChevronLeft, ChevronRight, Linkedin
+  ChevronLeft, ChevronRight, Linkedin, MessageCircle
 } from 'lucide-react';
 
 import logo from './assets/logo_transparent.png';
-import peggy from './assets/peggy.jpg';
+import peggy from './assets/peggy_new.png';
 import peggy2 from './assets/peggy2.jpg';
 
 
@@ -61,6 +61,35 @@ function FloatingPaths({ position }: { position: number }) {
   );
 }
 
+function FAQItem({ question, answer }: { question: string, answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="border-b border-gray-100 py-6">
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        className="flex w-full justify-between items-center text-left focus:outline-none group gap-4"
+      >
+        <span className="text-xl font-serif text-gray-900 group-hover:text-[var(--color-brand)] transition-colors pr-4">{question}</span>
+        <motion.div animate={{ rotate: isOpen ? 90 : 0 }} transition={{ duration: 0.2 }} className="text-[var(--color-brand)] shrink-0">
+          <ChevronRight size={24} />
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ height: 0, opacity: 0 }} 
+            animate={{ height: "auto", opacity: 1 }} 
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <p className="pt-4 text-gray-600 leading-relaxed text-lg">{answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -82,6 +111,7 @@ export default function App() {
     { name: 'Prüfungsvorbereitung', href: '#pruefungsvorbereitung' },
     { name: 'Prozess', href: '#prozess' },
     { name: 'Stimmen', href: '#stimmen' },
+    { name: 'FAQ', href: '#faq' },
   ];
 
   return (
@@ -601,25 +631,113 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <section id="faq" className="py-24 px-6 md:px-12 bg-gray-50">
+          <div className="max-w-4xl mx-auto">
+            <FadeIn className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-serif mb-4">Häufige Fragen</h2>
+              <p className="text-gray-600 text-lg">Alles was du vor deinem ersten Termin wissen solltest.</p>
+            </FadeIn>
+            
+            <div className="space-y-2">
+              {[
+                {
+                  q: "Wie läuft das kostenlose Erstgespräch ab?",
+                  a: "Das etwa 15 bis 20-minütige Erstgespräch findet telefonisch oder per Video-Call statt. Wir lernen uns unverbindlich kennen, besprechen dein Anliegen und schauen gemeinsam, ob wir thematisch und persönlich zusammenpassen."
+                },
+                {
+                  q: "Finden die Termine online oder vor Ort statt?",
+                  a: "Ich biete sowohl Online-Termine über gängige Videoplattformen als auch persönliche Termine (z.B. in der Region Köln) an. Für Unternehmen und Gruppen komme ich auch gerne für Workshops direkt zu euch Inhouse."
+                },
+                {
+                  q: "Wie lange dauert eine Prüfungsvorbereitung im Schnitt?",
+                  a: "Das hängt stark vom individuellen Lernstand ab. Erfahrungsgemäß reichen meist 2 bis 6 gezielte Termine aus, um die nötige Struktur aufzubauen, fachliche Lücken zu schließen und Sicherheit sowie Selbstvertrauen für die Prüfung zu gewinnen."
+                },
+                {
+                  q: "Übernimmt der Arbeitgeber die Kosten für das Coaching?",
+                  a: "Einige Arbeitgeber übernehmen die Kosten für die Weiterentwicklung und besonders für die Prüfungsvorbereitung ihrer Mitarbeitenden oder Auszubildenden. Es lohnt sich meistens, diesbezüglich direkt beim Arbeitgeber nachzufragen! Gerne erstelle ich ein passendes Angebot für euer Unternehmen."
+                },
+                {
+                  q: "Muss ich mich auf unser erstes Coaching vorbereiten?",
+                  a: "Nein, eine spezielle Vorbereitung ist für den Start nicht nötig. Komm einfach unvoreingenommen mit deinem Thema und deiner Bereitschaft. Im Erstgespräch klären wir alles Weitere."
+                }
+              ].map((faq, idx) => (
+                <FadeIn key={idx} delay={idx * 0.1}>
+                  <FAQItem question={faq.q} answer={faq.a} />
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
-      <footer className="bg-[var(--color-ink)] text-white/80 py-12 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left">
-            <img
-              src={logo}
-              alt="Wachstumswerk Logo"
-              className="h-16 w-auto object-contain mb-4 mx-auto md:mx-0 brightness-0 invert opacity-90"
-            />
-            <p className="text-sm">Begleitung für deine persönliche Entwicklung.</p>
+      <footer className="bg-[var(--color-ink)] text-white/80 pt-20 pb-10 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+            {/* Brand */}
+            <div className="space-y-6">
+              <img
+                src={logo}
+                alt="Wachstumswerk Logo"
+                className="h-16 w-auto object-contain brightness-0 invert opacity-90"
+              />
+              <p className="text-white/60 text-sm leading-relaxed max-w-xs">
+                Innere Führung stärken, Klarheit gewinnen. Individuelle Begleitung für Einzelpersonen, Auszubildende und Teams.
+              </p>
+              <a href="https://www.linkedin.com/company/wachstumswerk-coaching-i-training-i-pr%C3%BCfungsvorbereitung-f%C3%BCr-auszubildende/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors">
+                <Linkedin size={18} />
+              </a>
+            </div>
+
+            {/* Kontakt */}
+            <div>
+              <h3 className="text-white font-medium mb-6">Kontakt</h3>
+              <ul className="space-y-4 text-sm text-white/60">
+                <li>
+                  <a href="mailto:hallo@peggy-coaching.de" className="hover:text-white transition-colors">hallo@peggy-coaching.de</a>
+                </li>
+                <li>
+                  <a href="tel:+4922112345678" className="hover:text-white transition-colors">+49 221 123 456 78</a>
+                </li>
+                <li>
+                  Raum Köln/Bonn & Online
+                </li>
+              </ul>
+            </div>
+
+            {/* Navigation */}
+            <div>
+              <h3 className="text-white font-medium mb-6">Navigation</h3>
+              <ul className="space-y-4 text-sm text-white/60">
+                <li><a href="#angebot" className="hover:text-white transition-colors">Angebot</a></li>
+                <li><a href="#ueber-mich" className="hover:text-white transition-colors">Über mich</a></li>
+                <li><a href="#pruefungsvorbereitung" className="hover:text-white transition-colors">Prüfungsvorbereitung</a></li>
+                <li><a href="#faq" className="hover:text-white transition-colors">Häufige Fragen</a></li>
+              </ul>
+            </div>
+
+            {/* Rechtliches */}
+            <div>
+              <h3 className="text-white font-medium mb-6">Rechtliches</h3>
+              <ul className="space-y-4 text-sm text-white/60">
+                <li><button onClick={() => setShowImpressum(true)} className="hover:text-white transition-colors">Impressum</button></li>
+                <li><button onClick={() => setShowDatenschutz(true)} className="hover:text-white transition-colors">Datenschutz</button></li>
+              </ul>
+            </div>
           </div>
-          <div className="flex gap-6 text-sm">
-            <button onClick={() => setShowImpressum(true)} className="hover:text-white transition-colors cursor-pointer">Impressum</button>
-            <button onClick={() => setShowDatenschutz(true)} className="hover:text-white transition-colors cursor-pointer">Datenschutz</button>
-          </div>
-          <div className="text-sm text-white/50">
-            &copy; 2026 Wachstumswerk. Alle Rechte vorbehalten.
+
+          {/* Sub-Footer */}
+          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-sm text-white/40">
+              &copy; 2026 Wachstumswerk. Alle Rechte vorbehalten.
+            </div>
+            <a href="https://rheindorf.digital" 
+               target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 bg-white transition-all group">
+              <span className="text-xs text-gray-400">built by</span><span className="text-xs text-gray-700 font-medium group-hover:text-gray-900 transition-colors">rheindorf.digital</span>
+            </a>
           </div>
         </div>
       </footer>
@@ -732,6 +850,22 @@ export default function App() {
               </div>
             </motion.div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Action Button (Mobile only since desktop has sticky nav) */}
+      <AnimatePresence>
+        {isScrolled && (
+          <motion.a
+            href="#kontakt"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            className="fixed bottom-6 right-6 z-50 bg-[var(--color-brand)] text-white p-4 rounded-full shadow-xl hover:bg-[var(--color-brand-light)] hover:shadow-2xl transition-all focus:outline-none md:hidden group"
+            aria-label="Zum Kontaktformular"
+          >
+            <MessageCircle size={24} className="group-hover:scale-110 transition-transform" />
+          </motion.a>
         )}
       </AnimatePresence>
     </div>
