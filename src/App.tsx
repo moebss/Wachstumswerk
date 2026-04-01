@@ -95,6 +95,21 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showImpressum, setShowImpressum] = useState(false);
   const [showDatenschutz, setShowDatenschutz] = useState(false);
+  const [formStatus, setFormStatus] = useState<'idle' | 'sent'>('idle');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || '';
+    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value || '';
+    const topic = (form.querySelector('input[name="topic"]:checked') as HTMLInputElement)?.value || '';
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '';
+    const subject = encodeURIComponent(`Anfrage: ${topic} – ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nE-Mail: ${email}\nThema: ${topic}\n\nNachricht:\n${message}`);
+    window.location.href = `mailto:hallo@peggy-coaching.de?subject=${subject}&body=${body}`;
+    setFormStatus('sent');
+    setTimeout(() => setFormStatus('idle'), 5000);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -359,6 +374,12 @@ export default function App() {
                 </FadeIn>
               ))}
             </div>
+
+            <FadeIn className="mt-16 text-center">
+              <a href="#kontakt" className="inline-block bg-white text-[var(--color-brand)] px-8 py-4 rounded-full font-medium hover:bg-gray-100 transition-colors shadow-lg">
+                Jetzt Erstgespräch vereinbaren
+              </a>
+            </FadeIn>
           </div>
         </section>
 
@@ -458,7 +479,7 @@ export default function App() {
               >
                 {[
                   {
-                    quote: "Dank des Coachings bei Peggy in Vorbereitung auf ein Bewerbungsgespräch bin ich deutlich souveräner und selbstbewusster in dieses Gespräch gegangen. Das Ergebnis: Ich habe die Stelle bekomme! Nachdem ich bereits zahlreiche, teils äußerst negative Erfahrungen mit Bewerbungsgesprächen gesammelt habe, war Peggys innovativer Ansatz der Schlüssel für einen erfolgreichen Ausgang zum lang ersehnten beruflichen Wechsel. Ich kann das Coaching allen empfehlen, die sich beruflich neu orientieren, weiterentwickeln oder festgefahrene Situationen konstruktiv verändern möchten. Vielen Dank für die professionelle und motivierende Unterstützung!",
+                    quote: "Dank des Coachings bei Peggy bin ich deutlich souveräner in mein Bewerbungsgespräch gegangen – und habe die Stelle bekommen! Peggys innovativer Ansatz war der Schlüssel für meinen lang ersehnten beruflichen Wechsel. Klare Empfehlung für alle, die sich beruflich neu orientieren möchten.",
                     name: "Rike",
                     role: "Coachee",
                     initials: "R"
@@ -577,7 +598,7 @@ export default function App() {
               </FadeIn>
 
               <FadeIn delay={0.2}>
-                <form className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100" onSubmit={(e) => e.preventDefault()}>
+                <form className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100" onSubmit={handleSubmit}>
                   <div className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Name</label>
@@ -623,8 +644,11 @@ export default function App() {
                     </div>
 
                     <button type="submit" className="w-full bg-[var(--color-brand)] text-white py-4 rounded-2xl font-medium hover:bg-[var(--color-brand-light)] transition-colors mt-4">
-                      Nachricht senden
+                      {formStatus === 'sent' ? '✓ E-Mail-Programm geöffnet!' : 'Nachricht senden'}
                     </button>
+                    {formStatus === 'sent' && (
+                      <p className="text-sm text-center text-[var(--color-brand)] mt-3">Bitte sende die vorbereitete E-Mail in deinem E-Mail-Programm ab.</p>
+                    )}
                   </div>
                 </form>
               </FadeIn>
@@ -733,10 +757,14 @@ export default function App() {
             <div className="text-sm text-white/40">
               &copy; 2026 Wachstumswerk. Alle Rechte vorbehalten.
             </div>
-            <a href="https://rheindorf.digital" 
-               target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 bg-white transition-all group">
-              <span className="text-xs text-gray-400">built by</span><span className="text-xs text-gray-700 font-medium group-hover:text-gray-900 transition-colors">rheindorf.digital</span>
+            <a href="https://rheindorf.digital" target="_blank" rel="noopener noreferrer" className="badge-rheindorf">
+              <span className="badge-rheindorf__inner">
+                <span className="badge-rheindorf__text">
+                  <span className="badge-rheindorf__eyebrow">Made by</span>
+                  <span className="badge-rheindorf__name">rheindorf<span>.digital</span></span>
+                </span>
+              </span>
+              <span className="badge-rheindorf__tip" />
             </a>
           </div>
         </div>
